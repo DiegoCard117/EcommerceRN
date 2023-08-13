@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Dimensions, Text, Image } from 'react-native';
+import { View, StyleSheet, Dimensions, Text, Image, TouchableOpacity, ScrollView } from 'react-native';
 
 // import { Container } from './styles';
 
@@ -32,7 +32,9 @@ export default function Aside() {
     <>
       <View style={styles.aside}>
           {imagens.map( (iten)=> (
-            <Image key={iten.id} source={iten.img} style={styles.img}/>
+            <TouchableOpacity>
+              <Image key={iten.id} source={iten.img} style={styles.img}/>
+            </TouchableOpacity>
           ))}
       </View>
     </>
@@ -46,7 +48,12 @@ const styles = StyleSheet.create({
   aside: {
     backgroundColor: '#0c0c0c',
     width: 100,
-    height: screenheight,
+    height: screenheight - 130,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: '5%',
+    paddingBottom: '10%',
+
   },
   title: {
     color: '#F1F2F5',

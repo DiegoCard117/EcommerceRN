@@ -1,6 +1,6 @@
 //npx expo start
 import { useFonts } from 'expo-font';
-import { Text, View, Image, TextInput, SafeAreaView, Dimensions, StyleSheet } from 'react-native';
+import { Text, View, Image, TextInput, SafeAreaView, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
 
 import profile from '../assets/img/profile.png'
 import heart from '../assets/img/heart.png'
@@ -28,22 +28,30 @@ export default function Header() {
           <View style={styles.headerTop}>
             <Text style={styles.title}>Ecommerce</Text>
             <View style={styles.headerTopImg}>
-              <Image
-                style={styles.imgHeader}
-                source={profile}
-              />
-              <Image
-                style={styles.imgHeader}
-                source={contact}
-              />
-              <Image
-                style={styles.imgHeader}
-                source={heart}
-              />
-              <Image
-                style={styles.imgHeader}
-                source={cart}
-              />
+              <TouchableOpacity>
+                <Image
+                  style={styles.imgHeader}
+                  source={profile}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Image
+                  style={styles.imgHeader}
+                  source={contact}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Image
+                  style={styles.imgHeader}
+                  source={heart}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Image
+                  style={styles.imgHeader}
+                  source={cart}
+                />
+              </TouchableOpacity>
             </View>
           </View>
           {/*fim do topHeader*/}
