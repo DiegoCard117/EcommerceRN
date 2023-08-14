@@ -1,6 +1,6 @@
 //npx expo start
 import { useFonts } from 'expo-font';
-import { Text, View, Image, TextInput, SafeAreaView, Dimensions, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, Image, TextInput, SafeAreaView, Dimensions, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
 
 import profile from '../assets/img/profile.png'
 import heart from '../assets/img/heart.png'
@@ -79,12 +79,11 @@ let screewidth = Dimensions.get('window').width
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 30,
+    paddingTop: 10,
     backgroundColor: '#F1F2F5',
   },
   header: {
     display: 'flex',
-    height:130 ,
     padding:20 ,
   },
   headerTop: {

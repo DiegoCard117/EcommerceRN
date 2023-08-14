@@ -6,9 +6,14 @@ import {
     StyleSheet,
     Image,
     Text,
-   } from 'react-native';
+    Dimensions,
+    TouchableOpacity
+   }
+from 'react-native';
 
-import gpu from '../assets/img/3050msi.png'
+import clock from '../assets/img/clock.png'
+import Contacts from './Contacts';
+import Aside from './Aside';
 
 // import { Container } from './styles';
 
@@ -34,33 +39,45 @@ export default function ProductsBox() {
 
   return (
     <>
-      <ScrollView>
-        {data.map((data) => (
-          <View style={styles.container}>
-          <View style={styles.imgProduct}>
-            <Image
-              style={{width:190, height:167}}
-              source={{uri : data.img}}
-              alt=''
-            />
-          </View>
-          <Text style={styles.titleProduct}>{data.name}</Text>
-          <Text style={styles.spanPriceOlder}>de R$ 3.203,74 por:</Text>
-          <Text style={styles.spanVista}>à vista</Text>
-          <Text style={styles.price}>R$ {data.price}</Text>
-          <Text style={styles.divisor}>em até 12x de {((data.price / 12) * 1.2).toFixed(2)} sem juros no cartão</Text>
-        </View>
-        ))}
-      </ScrollView>
+      <View style={styles.containerbig}>
+        <ScrollView style={styles.ScrollView}>
+          {data.map((data) => (
+            <TouchableOpacity style={styles.container}>
+              <View style={styles.imgProduct}>
+                <Image
+                  style={{width:190, height:167}}
+                  source={{uri : data.img}}
+                  alt=''
+                />
+              </View>
+              <Text style={styles.titleProduct}>{data.name}</Text>
+              <Text style={styles.spanPriceOlder}>de {(data.price) * 2} por:</Text>
+              <Text style={styles.spanVista}>à vista</Text>
+              <Text style={styles.price}>R$ {data.price}</Text>
+              <Text style={styles.divisor}>em até 12x de {((data.price / 12) * 1.2).toFixed(2)} sem juros no cartão</Text>
+          </TouchableOpacity>
+          ))}
+          <Contacts/>
+        </ScrollView>
+      </View>
+
     </>
   );
 }
 
+let screenheight = Dimensions.get("window").height
+
 const styles = StyleSheet.create({
+  containerbig : {
+    flexDirection: 'collum',
+    height: screenheight - 140
+  },
+  ScrollView: {
+  },
   container: {
     backgroundColor: '#FFF',
     height: 470,
-    width: '100',
+    width: '77%',
     margin: '5%',
     padding: 10,
 

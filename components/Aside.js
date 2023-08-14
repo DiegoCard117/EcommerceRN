@@ -32,8 +32,8 @@ export default function Aside() {
     <>
       <View style={styles.aside}>
           {imagens.map( (iten)=> (
-            <TouchableOpacity>
-              <Image key={iten.id} source={iten.img} style={styles.img}/>
+            <TouchableOpacity key={iten.id}>
+              <Image source={iten.img} style={styles.img}/>
             </TouchableOpacity>
           ))}
       </View>
@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   aside: {
     backgroundColor: '#0c0c0c',
     width: 100,
-    height: screenheight - 130,
+    height: screenheight - 120,
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingTop: '5%',
