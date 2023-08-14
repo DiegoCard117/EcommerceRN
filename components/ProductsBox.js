@@ -14,6 +14,7 @@ from 'react-native';
 import clock from '../assets/img/clock.png'
 import Contacts from './Contacts';
 import Aside from './Aside';
+import Footer from './Footer';
 
 // import { Container } from './styles';
 
@@ -58,6 +59,7 @@ export default function ProductsBox() {
           </TouchableOpacity>
           ))}
           <Contacts/>
+          <Footer/>
         </ScrollView>
       </View>
 
@@ -70,7 +72,7 @@ let screenheight = Dimensions.get("window").height
 const styles = StyleSheet.create({
   containerbig : {
     flexDirection: 'collum',
-    height: screenheight - 140
+    height: screenheight - 130
   },
   ScrollView: {
   },

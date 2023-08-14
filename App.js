@@ -4,6 +4,7 @@ import Aside from './components/Aside.js'
 import ProductsBox from './components/ProductsBox.js'
 import { View, Dimensions, ScrollView } from 'react-native';
 import Contacts from './components/Contacts.js';
+import Footer from './components/Footer.js';
 
 export default function App() {
 
@@ -11,14 +12,12 @@ export default function App() {
     <>
     <Header/>
       <View style={{flexDirection: 'column'}}>
-        <ScrollView>
-          
+        <ScrollView>  
           <View style={{flexDirection: 'row', height:'100%'}}>
             <Aside/>
             <ProductsBox/>
           </View>
         </ScrollView>
-
       </View>
     </>
   );
