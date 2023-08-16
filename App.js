@@ -1,29 +1,30 @@
 //npx expo start
-import Header from './components/Header.js'
-import Aside from './components/Aside.js'
-import ProductsBox from './components/ProductsBox.js'
-import { View, Dimensions, ScrollView } from 'react-native';
-import Contacts from './components/Contacts.js';
-import Footer from './components/Footer.js';
+import Home from './assets/pages/Home'
+import Login from './assets/pages/Login';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator()
+
 
 export default function App() {
 
   return (
-    <>
-    <Header/>
-      <View style={{flexDirection: 'column'}}>
-        <ScrollView>  
-          <View style={{flexDirection: 'row', height:'100%'}}>
-            <Aside/>
-            <ProductsBox/>
-          </View>
-        </ScrollView>
-      </View>
-    </>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName='Home'>
+        <Stack.Screen
+          name="Home"
+          component={Home}
+          options={{ title: 'Home' }}
+        />
+        <Stack.Screen
+          name="Login"
+          component={Login}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-let screenheight = Dimensions.get("window").height
 
 
 

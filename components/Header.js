@@ -1,4 +1,5 @@
 //npx expo start
+import React from 'react';
 import { useFonts } from 'expo-font';
 import { Text, View, Image, TextInput, SafeAreaView, Dimensions, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
 
@@ -10,7 +11,8 @@ import cart from '../assets/img/cart.png'
 import search from '../assets/img/search.png'
 import { useState } from 'react';
 
-export default function Header() {
+
+export default function Header({navigation}) {
   const [ text, onChangeText ] = useState('') 
 
   const [loaded] = useFonts({
@@ -28,7 +30,10 @@ export default function Header() {
           <View style={styles.headerTop}>
             <Text style={styles.title}>Ecommerce</Text>
             <View style={styles.headerTopImg}>
-              <TouchableOpacity>
+              <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Login')
+              }}>
                 <Image
                   style={styles.imgHeader}
                   source={profile}
