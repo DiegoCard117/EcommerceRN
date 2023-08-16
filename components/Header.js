@@ -28,7 +28,13 @@ export default function Header({navigation}) {
       <View style={styles.container}>
         <View style={styles.header}>
           <View style={styles.headerTop}>
-            <Text style={styles.title}>Ecommerce</Text>
+            <Text 
+              onPress={() => {
+                navigation.navigate('Home')
+              }}
+              style={styles.title}>
+              Ecommerce
+            </Text>
             <View style={styles.headerTopImg}>
               <TouchableOpacity
               onPress={() => {

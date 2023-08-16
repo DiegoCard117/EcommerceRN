@@ -9,7 +9,6 @@ import pc from '../assets/img/pc.png'
 import upgrade from '../assets/img/upgrade.png'
 import monitor from '../assets/img/monitor.png'
 import cadeira from '../assets/img/cadeira.png'
-import mesa from '../assets/img/mesa.png'
 import notebook from '../assets/img/notebook.png'
 import console from '../assets/img/console.png'
 import roteador from '../assets/img/roteador.png'
@@ -21,10 +20,9 @@ const imagens = [
   {id:'4', img: upgrade, name: 'Kit Upgrade'},
   {id:'5', img: monitor, name: 'Monitores'},
   {id:'6', img: cadeira, name: 'Cadeiras e Mesas Gamer'},
-  {id:'7', img: mesa, name: 'Cadeiras e Mesas de Escritorio'},
-  {id:'8', img: notebook, name: 'Notebooks'},
-  {id:'9', img: console, name: 'Consoles'},
-  {id:'10', img: roteador, name: 'Redes e Wireless'}
+  {id:'7', img: notebook, name: 'Notebooks'},
+  {id:'8', img: console, name: 'Consoles'},
+  {id:'9', img: roteador, name: 'Redes e Wireless'}
 ]
 
 export default function Aside() {
@@ -58,7 +56,7 @@ const styles = StyleSheet.create({
   aside: {
     backgroundColor: '#0c0c0c',
     width: 100,
-    height: screenheight - 120,
+    height: screenheight - 200,
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingTop: '5%',
@@ -67,7 +65,7 @@ const styles = StyleSheet.create({
   asideOpen: {
     backgroundColor: '#0c0c0c',
     width: screewidth,
-    height: screenheight - 120,
+    height: screenheight - 200,
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingTop: '5%',

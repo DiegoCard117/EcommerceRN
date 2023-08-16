@@ -11,12 +11,8 @@ import {
    }
 from 'react-native';
 
-import clock from '../assets/img/clock.png'
 import Contacts from './Contacts';
-import Aside from './Aside';
 import Footer from './Footer';
-
-// import { Container } from './styles';
 
 export default function ProductsBox() {
 
@@ -43,7 +39,7 @@ export default function ProductsBox() {
       <View style={styles.containerbig}>
         <ScrollView style={styles.ScrollView}>
           {data.map((data) => (
-            <TouchableOpacity style={styles.container}>
+            <TouchableOpacity style={styles.container} key={data.id}>
               <View style={styles.imgProduct}>
                 <Image
                   style={{width:190, height:167}}
@@ -72,7 +68,7 @@ let screenheight = Dimensions.get("window").height
 const styles = StyleSheet.create({
   containerbig : {
     flexDirection: 'collum',
-    height: screenheight - 210
+    height: screenheight - 200
   },
   ScrollView: {
   },
