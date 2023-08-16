@@ -12,6 +12,7 @@ export default function Cadastro({navigation}) {
   const [name, setName] = useState('')
   const [sobrenome, setSobrenome] = useState('')
   const [number, setNumber] = useState('')
+  const [email, setEmail] = useState('')
 
   return (
     <ScrollView>
@@ -91,6 +92,43 @@ export default function Cadastro({navigation}) {
                 height={25}
                />
             </View>
+            {/* email */}
+            <Text style={styles.textInput}>Email</Text>
+            <TextInput
+              style={styles.Input}
+              onChangeText={setEmail}
+              value={email}
+              placeholder="Digite seu Email"
+              placeholderTextColor={'#F1F2F5'}
+            />
+            <Text style={styles.textInput}>Confirme seu Email</Text>
+            <TextInput
+              style={styles.Input}
+              onChangeText={setEmail}
+              value={email}
+              placeholder="Confirme seu Email"
+              placeholderTextColor={'#F1F2F5'}
+            />
+            {/* senhas */}
+            <View style={styles.containerPassword}>
+                <Text style={styles.textInput}>Senha</Text>
+              <View style={styles.contentPassword}>
+                <TextInput
+                  style={styles.InputPass}
+                  onChangeText={setEmail}
+                  value={email}
+                  placeholder="Digite sua senha"
+                  placeholderTextColor={'#F1F2F5'}
+                />
+                <TextInput
+                  style={styles.InputPass}
+                  onChangeText={setEmail}
+                  value={email}
+                  placeholder="Confirme sua senha"
+                  placeholderTextColor={'#F1F2F5'}
+                />
+              </View>
+            </View>
           </SafeAreaView>
         </View>
       </View>
@@ -152,6 +190,17 @@ const styles = StyleSheet.create({
     width : '95%',
     flexDirection : 'row',
     alignItems :'center',
-    borderRadius : 5
+    borderRadius : 5,
+    marginBottom: 20
+  },
+  contentPassword : {
+    flexDirection : 'row',
+    
+  },
+  InputPass : {
+    backgroundColor : '#0c0c0c',
+    padding : 10,
+    width : '45%',
+    marginRight : '5%'
   }
 })
