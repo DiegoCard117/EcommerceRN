@@ -1,4 +1,4 @@
-import { Text, ScrollView, StyleSheet, View, TextInput, Image } from "react-native"
+import { Text, ScrollView, StyleSheet, View, TextInput, Image, TouchableOpacity, Dimensions } from "react-native"
 
 import SelectDropdown from 'react-native-select-dropdown'
 
@@ -6,13 +6,20 @@ import Header from "../../components/Header"
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 
+import { Ionicons } from '@expo/vector-icons'
+
 import arrow from '../img/arrow.png'
 
 export default function Cadastro({navigation}) {
   const [name, setName] = useState('')
   const [sobrenome, setSobrenome] = useState('')
   const [number, setNumber] = useState('')
+
   const [email, setEmail] = useState('')
+  const [confirmEmail, setConfirmEmail] = useState('')
+
+  const [senha, setSenha] = useState('')
+  const [confirmSenha, setConfirmSenha] = useState('')
 
   return (
     <ScrollView>
@@ -104,8 +111,8 @@ export default function Cadastro({navigation}) {
             <Text style={styles.textInput}>Confirme seu Email</Text>
             <TextInput
               style={styles.Input}
-              onChangeText={setEmail}
-              value={email}
+              onChangeText={setConfirmEmail}
+              value={confirmEmail}
               placeholder="Confirme seu Email"
               placeholderTextColor={'#F1F2F5'}
             />
@@ -115,31 +122,48 @@ export default function Cadastro({navigation}) {
               <View style={styles.contentPassword}>
                 <TextInput
                   style={styles.InputPass}
-                  onChangeText={setEmail}
-                  value={email}
+                  onChangeText={setSenha}
+                  value={senha}
                   placeholder="Digite sua senha"
                   placeholderTextColor={'#F1F2F5'}
                 />
                 <TextInput
                   style={styles.InputPass}
-                  onChangeText={setEmail}
-                  value={email}
+                  onChangeText={setConfirmSenha}
+                  value={confirmSenha}
                   placeholder="Confirme sua senha"
                   placeholderTextColor={'#F1F2F5'}
                 />
               </View>
             </View>
           </SafeAreaView>
+            <View style={styles.btnArea}>
+              <TouchableOpacity style={styles.btnSubmit}>
+                <Text style={styles.btnText}>Criar Conta</Text>
+              </TouchableOpacity>
+            </View>
+          {/* logar com redes sociais */}
+          <View style={styles.loginSocial}>
+            <TouchableOpacity>
+              <Ionicons style={styles.iconSocial} name="logo-google" color='#0c0c0c' size={25}/>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Ionicons style={styles.iconSocial} name="logo-facebook" color='#0c0c0c' size={25}/>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     </ScrollView>
   )
 }
 
+let screenwidth = Dimensions.get("window").width
+
 const styles = StyleSheet.create({
   container : {
     flex: 1,
     alignItems : 'center',
+    marginBottom : 50
   },
   contentNewClient : {
     alignItems : 'center',
@@ -201,6 +225,36 @@ const styles = StyleSheet.create({
     backgroundColor : '#0c0c0c',
     padding : 10,
     width : '45%',
-    marginRight : '5%'
-  }
+    marginRight : '5%',
+    color : '#F1F2F5'
+  },
+  btnSubmit : {
+    backgroundColor : '#0c0c0c',
+    padding : 10,
+    width : '50%',
+    alignItems: 'center',
+    justifyContent : 'center',
+    marginTop : 20,
+    borderRadius : 5,
+  },
+  btnText : {
+    color : '#F1F2F5',
+  },
+  loginSocial : {
+    flexDirection : 'row',
+    justifyContent : 'center',
+  },
+  iconSocial : {
+    padding : 15
+  },
+  loginBottom : {
+    justifyContent : 'center',
+    alignItems : 'center',
+    padding : 20,
+  },
+  btnArea : {
+    width : '100%',
+    alignItems: 'center',
+  },
+
 })
