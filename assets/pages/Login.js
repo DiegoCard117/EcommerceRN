@@ -1,4 +1,3 @@
-import React from "react";
 import { Text,
   View,
   StyleSheet,
@@ -9,25 +8,24 @@ import { Text,
   }
 from "react-native"
 
-import { useState, useContext } from "react";
-
-import Header from "../../components/Header";
-
 import { Ionicons } from '@expo/vector-icons'
 import locker from '../img/locker.png'
+import Header from "../../components/Header";
+
+import React, { useState, useContext } from "react";
 
 import authService from '../services/auth'
 import AuthContext from "../contexts/auth";
 
 export default function Login({navigation}) {
   const [ email, onChangeEmail ] = useState('') 
-
   const [ senha, onChangeSenha ] = useState('')
   const [ hidePass, setHidePass] = useState(true)
 
-  const { signed, signIn } = useContext(AuthContext)
+  const {signed,user, signIn} = useContext(AuthContext)
+  
   console.log(signed)
-
+  console.log(user)
   function handleLogin() {
     signIn()
   }

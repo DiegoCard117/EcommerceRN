@@ -1,5 +1,5 @@
 //npx expo start
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useFonts } from 'expo-font';
 import { Text, View, Image, TextInput, SafeAreaView, Dimensions, StyleSheet, TouchableOpacity, StatusBar } from 'react-native';
 
@@ -7,13 +7,17 @@ import profile from '../assets/img/profile.png'
 import heart from '../assets/img/heart.png'
 import contact from '../assets/img/contato.png'
 import cart from '../assets/img/cart.png'
+import logout from '../assets/img/logout.png'
 
 import search from '../assets/img/search.png'
-import { useState } from 'react';
+
+import AuthContext from '../assets/contexts/auth';
 
 
 export default function Header({navigation}) {
   const [ text, onChangeText ] = useState('') 
+
+  const { signOut } = useContext(AuthContext)
 
   const [loaded] = useFonts({
     Poppins: require('../assets/fonts/Poppins-Light.ttf')
@@ -21,6 +25,10 @@ export default function Header({navigation}) {
 
   if(!loaded) {
     return null
+  }
+
+  function handleSignOut() {
+    signOut()
   }
 
   return (
@@ -48,12 +56,6 @@ export default function Header({navigation}) {
               <TouchableOpacity>
                 <Image
                   style={styles.imgHeader}
-                  source={contact}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <Image
-                  style={styles.imgHeader}
                   source={heart}
                 />
               </TouchableOpacity>
@@ -61,6 +63,14 @@ export default function Header({navigation}) {
                 <Image
                   style={styles.imgHeader}
                   source={cart}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity 
+                onPress={handleSignOut}
+              >
+                <Image
+                  style={styles.imgHeader}
+                  source={logout}
                 />
               </TouchableOpacity>
             </View>

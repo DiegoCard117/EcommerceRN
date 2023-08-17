@@ -1,23 +1,30 @@
-import React, { createContext } from "react";
-import * as auth from "../services/auth";
+import React, { createContext, useState } from "react";
+import { signIn } from "../services/auth"; // Importar a função signIn corretamente
 
-const AuthContext = createContext({})
+const AuthContext = createContext({});
 
-export const AuthProvider = ({children}) => {
-  async function signIn() {
-    const response = await auth.signIn()
+export const AuthProvider = ({ children }) => {
+  const [ user, setUser] = useState(null)
 
-    console.log(response)
+  async function handleSignIn() {
+    const response = await signIn(); // Chamar a função signIn corretamente
+
+    setUser(response.user)
   }
 
+  function handleSignOut() {
+    setUser(null)
+  }
+// dois ! ou !! é pra verificar se é verdadeiro ou nao
   return (
-    <AuthContext.Provider value={{signed: false, user: {}, signIn}}>
+    <AuthContext.Provider value={{ signed: !!user, user, signIn: handleSignIn, signOut: handleSignOut }}> 
       {children}
     </AuthContext.Provider>
-  )   
-}
+  );
+};
 
-export default AuthContext
+export default AuthContext;
+
 
 
 
