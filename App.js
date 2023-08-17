@@ -1,31 +1,20 @@
 //npx expo start
-import Home from './assets/pages/Home'
-import Login from './assets/pages/Login'
-import Cadastro  from './assets/pages/Cadastro'
+//import Home from './assets/pages/Home'
+//import Login from './assets/pages/Login'
+//import Cadastro  from './assets/pages/Cadastro'
+import React from "react";
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { AuthProvider } from "./assets/contexts/auth";
 
-const Stack = createNativeStackNavigator()
-
+import Routes from "./assets/routes";
 
 export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName='Cadastro'>
-        <Stack.Screen
-          name="Home"
-          component={Home}
-        />
-        <Stack.Screen
-          name="Login"
-          component={Login}
-        />
-        <Stack.Screen
-          name="Cadastro"
-          component={Cadastro}
-        />
-      </Stack.Navigator>
+      <AuthProvider>
+        <Routes />
+      </AuthProvider>
     </NavigationContainer>
   );
 }

@@ -1,3 +1,4 @@
+import React from "react";
 import { Text,
   View,
   StyleSheet,
@@ -8,18 +9,28 @@ import { Text,
   }
 from "react-native"
 
-import { useState } from "react";
+import { useState, useContext } from "react";
 
 import Header from "../../components/Header";
 
 import { Ionicons } from '@expo/vector-icons'
 import locker from '../img/locker.png'
 
+import authService from '../services/auth'
+import AuthContext from "../contexts/auth";
+
 export default function Login({navigation}) {
   const [ email, onChangeEmail ] = useState('') 
 
   const [ senha, onChangeSenha ] = useState('')
-  const [ hidePass, setHidePass] = useState(true) 
+  const [ hidePass, setHidePass] = useState(true)
+
+  const { signed, signIn } = useContext(AuthContext)
+  console.log(signed)
+
+  function handleLogin() {
+    signIn()
+  }
 
   return (
     <>
@@ -64,9 +75,14 @@ export default function Login({navigation}) {
                   <Ionicons name='eye-off' color='#F1F2F5' size={25}/>}
               </TouchableOpacity>
             </View>
-            <TouchableOpacity style={styles.btnSubmit}>
+            {/* login */}
+            <TouchableOpacity
+              style={styles.btnSubmit}
+              onPress={handleLogin}
+            >
               <Text style={styles.btnText}>Acessar Conta</Text>
             </TouchableOpacity>
+
           </SafeAreaView>
           {/* logar com redes sociais */}
           <View style={styles.loginSocial}>

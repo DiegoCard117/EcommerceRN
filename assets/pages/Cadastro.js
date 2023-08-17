@@ -1,3 +1,4 @@
+import React from "react";
 import { Text, ScrollView, StyleSheet, View, TextInput, Image, TouchableOpacity, Dimensions } from "react-native"
 
 import SelectDropdown from 'react-native-select-dropdown'
