@@ -32,9 +32,6 @@ export default function Login({navigation}) {
 
   return (
     <>
-      <Header
-        navigation={navigation}
-      />
       {/* começo do formulario de login*/}
       <View style={styles.container}>
         <View style={styles.loginTop}>

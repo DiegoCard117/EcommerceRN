@@ -45,9 +45,10 @@ export default function Header({navigation}) {
             </Text>
             <View style={styles.headerTopImg}>
               <TouchableOpacity
-              onPress={() => {
-                navigation.navigate('Login')
-              }}>
+              //onPress={() => {
+              //  navigation.navigate('Login')
+              //}}
+              >
                 <Image
                   style={styles.imgHeader}
                   source={profile}

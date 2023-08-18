@@ -9,6 +9,6 @@ export function signIn() {
           senha: 'teste123',
         },
       });
-    }, 2000);
+    }, 1000);
   });
 }

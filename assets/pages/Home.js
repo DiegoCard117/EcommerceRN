@@ -10,9 +10,6 @@ export default function Home({navigation}) {
 
   return (
     <>
-    <Header
-      navigation={navigation}
-    />
       <View style={{flexDirection: 'column'}}>
         <ScrollView>  
           <View style={{flexDirection: 'row', height:'100%'}}>

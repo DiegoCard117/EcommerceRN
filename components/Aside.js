@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   aside: {
     backgroundColor: '#0c0c0c',
     width: 100,
-    height: screenheight - 200,
+    height: screenheight - 140,
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingTop: '5%',
@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
   asideOpen: {
     backgroundColor: '#0c0c0c',
     width: screewidth,
-    height: screenheight - 200,
+    height: screenheight - 140,
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingTop: '5%',

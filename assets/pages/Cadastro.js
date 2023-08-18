@@ -24,9 +24,6 @@ export default function Cadastro({navigation}) {
 
   return (
     <ScrollView>
-      <Header
-        navigation={navigation}
-      />
       <View style={styles.container}>
         <View style={styles.loginBack}>
           <Text

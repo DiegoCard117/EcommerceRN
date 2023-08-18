@@ -68,7 +68,7 @@ let screenheight = Dimensions.get("window").height
 const styles = StyleSheet.create({
   containerbig : {
     flexDirection: 'collum',
-    height: screenheight - 200
+    height: screenheight - 140
   },
   ScrollView: {
   },
