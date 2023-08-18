@@ -14,7 +14,7 @@ export default function Home({navigation}) {
         <ScrollView>  
           <View style={{flexDirection: 'row', height:'100%'}}>
             <Aside/>
-            <ProductsBox/>
+            <ProductsBox navigation={navigation}/>
           </View>
         </ScrollView>
       </View>

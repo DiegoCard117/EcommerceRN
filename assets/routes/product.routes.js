@@ -1,9 +1,7 @@
-//logado
 
 import React from "react";
-import Home from "../pages/Home";
-import PageProduct from "../../components/PageProducts/PageProduct";
 import ProductsBox from "../../components/ProductsBox";
+import PageProducts from "../../components/PageProducts/PageProduct";
 
 import Header from "../../components/Header";
 
@@ -11,7 +9,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 
 const AppStack = createNativeStackNavigator()
 
-function AppRoutes() {
+function ProductsRoutes() {
   return (
     <AppStack.Navigator
       screenOptions={{
@@ -21,15 +19,15 @@ function AppRoutes() {
       }}
     >
       <AppStack.Screen
-        name="Home"
-        component={Home}
+        name="ProductsBox"
+        component={ProductsBox}
       />
       <AppStack.Screen
-        name="PageProduct"
-        component={PageProduct}
-      />
+        name="PageProducts"
+        component={PageProducts}
+      />  
     </AppStack.Navigator>
   )
 }
 
-export default AppRoutes
+export default ProductsRoutes

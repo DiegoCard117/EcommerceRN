@@ -14,7 +14,9 @@ from 'react-native';
 import Contacts from './Contacts';
 import Footer from './Footer';
 
-export default function ProductsBox() {
+import PageProduct from '../components/PageProducts/PageProduct'
+
+export default function ProductsBox({navigation}) {
 
   const [data, setData] = useState([]);
 
@@ -32,14 +34,20 @@ export default function ProductsBox() {
     } catch(error) {
       console.error('Erro encontrado', error)
     }
+    return data
   }
+
 
   return (
     <>
       <View style={styles.containerbig}>
         <ScrollView style={styles.ScrollView}>
           {data.map((data) => (
-            <TouchableOpacity style={styles.container} key={data.id}>
+            <TouchableOpacity
+              style={styles.container}
+              key={data.id}
+              onPress={() => navigation.navigate('PageProduct', {data})}
+              >
               <View style={styles.imgProduct}>
                 <Image
                   style={{width:190, height:167}}
