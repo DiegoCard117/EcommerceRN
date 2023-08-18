@@ -103,6 +103,7 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 10,
     backgroundColor: '#F1F2F5',
+    height : 140
   },
   header: {
     display: 'flex',
@@ -131,9 +132,10 @@ const styles = StyleSheet.create({
     padding: 10,
     width: screewidth - 110,
     marginLeft: 30,
-    color: '#F1F2F5'
+    color: '#F1F2F5',
   },
   SearchAll: {
+    borderRadius : 5,
     display: 'flex',
     flexDirection: 'row',
     backgroundColor: '#0c0c0c',

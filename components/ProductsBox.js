@@ -7,7 +7,8 @@ import {
     Image,
     Text,
     Dimensions,
-    TouchableOpacity
+    TouchableOpacity,
+    SafeAreaView
    }
 from 'react-native';
 
@@ -40,32 +41,34 @@ export default function ProductsBox({navigation}) {
 
   return (
     <>
-      <View style={styles.containerbig}>
-        <ScrollView style={styles.ScrollView}>
-          {data.map((data) => (
-            <TouchableOpacity
-              style={styles.container}
-              key={data.id}
-              onPress={() => navigation.navigate('PageProduct', {data})}
-              >
-              <View style={styles.imgProduct}>
-                <Image
-                  style={{width:190, height:167}}
-                  source={{uri : data.img}}
-                  alt=''
-                />
-              </View>
-              <Text style={styles.titleProduct}>{data.name}</Text>
-              <Text style={styles.spanPriceOlder}>de {(data.price) * 2} por:</Text>
-              <Text style={styles.spanVista}>à vista</Text>
-              <Text style={styles.price}>R$ {data.price}</Text>
-              <Text style={styles.divisor}>em até 12x de {((data.price / 12) * 1.2).toFixed(2)} sem juros no cartão</Text>
-          </TouchableOpacity>
-          ))}
-          <Contacts/>
-          <Footer/>
-        </ScrollView>
-      </View>
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.containerbig}>
+          <ScrollView style={styles.ScrollView}>
+            {data.map((data) => (
+              <TouchableOpacity
+                style={styles.container}
+                key={data.id}
+                onPress={() => navigation.navigate('PageProduct', {data})}
+                >
+                <View style={styles.imgProduct}>
+                  <Image
+                    style={{width:190, height:167}}
+                    source={{uri : data.img}}
+                    alt=''
+                  />
+                </View>
+                <Text style={styles.titleProduct}>{data.name}</Text>
+                <Text style={styles.spanPriceOlder}>de {(data.price) * 2} por:</Text>
+                <Text style={styles.spanVista}>à vista</Text>
+                <Text style={styles.price}>R$ {data.price}</Text>
+                <Text style={styles.divisor}>em até 12x de {((data.price / 12) * 1.2).toFixed(2)} sem juros no cartão</Text>
+            </TouchableOpacity>
+            ))}
+            <Contacts/>
+            <Footer/>
+          </ScrollView>
+        </View>
+      </SafeAreaView>
 
     </>
   );
@@ -73,7 +76,11 @@ export default function ProductsBox({navigation}) {
 
 let screenheight = Dimensions.get("window").height
 
+
 const styles = StyleSheet.create({
+  safeArea: {
+    flex: 1,
+  },
   containerbig : {
     flexDirection: 'collum',
     height: screenheight - 140
@@ -83,7 +90,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FFF',
     height: 470,
-    width: '77%',
+    width: '90%',
     margin: '5%',
     padding: 10,
 
@@ -92,6 +99,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
 
     elevation: 5,
+    borderRadius : 5
   },
   imgProduct: {
     alignItems: 'center',

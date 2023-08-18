@@ -5,10 +5,14 @@ import Footer from '../Footer';
 import Contacts from '../Contacts';
 
 import cart from '../../assets/img/cartAdd.png'
-// import { Container } from './styles';
 
 export default function PageProducts({route, navigation}) {
   const { data } = route.params
+
+  const parcelas = Array.from({ length: 12 }, (_, index) => ({
+    numero: index + 1,
+    valor: index === 0 ? data.price.toFixed(2) : ((data.price * 1.2) / (index + 1)).toFixed(2),
+  }));
 
   return (
     <ScrollView>
@@ -31,6 +35,7 @@ export default function PageProducts({route, navigation}) {
           <Text style={styles.priceCart}>R$ {(data.price * 1.2).toFixed(2)}</Text>
           <Text style={styles.divisor}>em até 12x de <Text style={styles.diviPrice}>{((data.price / 12) * 1.2).toFixed(2)}</Text> sem juros no cartão</Text>
         </View>
+        {/* botao de adicionar no carrinho */}
         <TouchableOpacity style={styles.btn}>
           <Image
             source={cart}
@@ -46,10 +51,15 @@ export default function PageProducts({route, navigation}) {
             <Text>(somente no cartão)</Text>
           </View>
           <View style={styles.boxParc}>
-
+            {parcelas.map((parcela) => (
+              <Text
+                style={styles.textPriceParc}
+                key={parcela.numero}>
+                {parcela.numero}x de R$ {parcela.valor} sem juros
+              </Text>
+            ))}
           </View>
         </View>
-
         {/* components Contacts e Footer abaixo */}
         <Contacts/>
         <View style={styles.footer}>
@@ -132,12 +142,16 @@ const styles = StyleSheet.create({
     width : '80%',
   },
   boxParc : {
-    height : 400,
+    padding: 10,
     backgroundColor : '#FFF',
     borderRadius : 10,
     marginVertical : 20
   },
   titleParc : {
     fontSize : 20
+  },
+  textPriceParc : {
+    fontSize : 14,
+    margin : 2
   }
 })
