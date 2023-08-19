@@ -60,7 +60,10 @@ export default function Header({navigation}) {
                   source={heart}
                 />
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={() => {
+                  navigation.navigate('Cart')
+                }}>
                 <Image
                   style={styles.imgHeader}
                   source={cart}

@@ -3,7 +3,7 @@
 import React from "react";
 import Home from "../pages/Home";
 import PageProduct from "../../components/PageProducts/PageProduct";
-import ProductsBox from "../../components/ProductsBox";
+import Cart from "../pages/Cart";
 
 import Header from "../../components/Header";
 
@@ -27,6 +27,10 @@ function AppRoutes() {
       <AppStack.Screen
         name="PageProduct"
         component={PageProduct}
+      />
+      <AppStack.Screen
+        name="Cart"
+        component={Cart}
       />
     </AppStack.Navigator>
   )

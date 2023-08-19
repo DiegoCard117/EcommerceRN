@@ -4,6 +4,7 @@ import { View, ScrollView, Text, Image, StyleSheet, TouchableOpacity } from 'rea
 import Footer from '../Footer';
 import Contacts from '../Contacts';
 
+
 import cart from '../../assets/img/cartAdd.png'
 
 export default function PageProducts({route, navigation}) {
@@ -36,7 +37,9 @@ export default function PageProducts({route, navigation}) {
           <Text style={styles.divisor}>em até 12x de <Text style={styles.diviPrice}>{((data.price / 12) * 1.2).toFixed(2)}</Text> sem juros no cartão</Text>
         </View>
         {/* botao de adicionar no carrinho */}
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity style={styles.btn}
+        onPress={() => navigation.navigate('Cart', {data})}
+        >
           <Image
             source={cart}
           />
