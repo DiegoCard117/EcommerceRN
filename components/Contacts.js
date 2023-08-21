@@ -60,7 +60,7 @@ export default function Contacts() {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'collum',
-    width: '77%',
+    width: '92%',
     margin: '4%',
     marginRight: 14,
     marginTop : 14,  backgroundColor : '#0c0c0c', borderWidth: 2,

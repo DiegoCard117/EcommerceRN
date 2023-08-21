@@ -6,13 +6,14 @@ import Contacts from '../Contacts';
 
 
 import cart from '../../assets/img/cartAdd.png'
+import formatCurrency from '../../assets/utils/formatCurrency';
 
 export default function PageProducts({route, navigation}) {
-  const { data } = route.params
+  const { products } = route.params
 
   const parcelas = Array.from({ length: 12 }, (_, index) => ({
     numero: index + 1,
-    valor: index === 0 ? data.price.toFixed(2) : ((data.price * 1.2) / (index + 1)).toFixed(2),
+    valor: index === 0 ? products.price.toFixed(2) : ((products.price * 1.2) / (index + 1)).toFixed(2),
   }));
 
   return (
@@ -21,24 +22,25 @@ export default function PageProducts({route, navigation}) {
         <View style={styles.containerImg}>
           <Image
             style={styles.imgProduct}
-            source={{uri: data.img}}
+            source={{uri: products.thumbnail.replace(/\w\.jpg/gi, 'W.jpg')}}
             alt=''
             width={245}
             height={203}
+            resizeMode='contain'
           />
         </View>
         <View style={styles.Titleprices}>
-          <Text style={styles.nameProduct}>{data.name}</Text>
-          <Text style={styles.priceOlder}>de R$ {data.price * 2} por:</Text>
+          <Text style={styles.nameProduct}>{products.title}</Text>
+          <Text style={styles.priceOlder}>de {formatCurrency(products.price * 2)} por:</Text>
           <Text style={styles.spanVista}>à vista</Text>
-          <Text style={styles.price}>R$ {data.price}</Text>
+          <Text style={styles.price}>{formatCurrency(products.price)}</Text>
           <Text>ou</Text>
-          <Text style={styles.priceCart}>R$ {(data.price * 1.2).toFixed(2)}</Text>
-          <Text style={styles.divisor}>em até 12x de <Text style={styles.diviPrice}>{((data.price / 12) * 1.2).toFixed(2)}</Text> sem juros no cartão</Text>
+          <Text style={styles.priceCart}>{formatCurrency((products.price * 1.2).toFixed(2))}</Text>
+          <Text style={styles.divisor}>em até 12x de <Text style={styles.diviPrice}>{((products.price / 12) * 1.2).toFixed(2)}</Text> sem juros no cartão</Text>
         </View>
         {/* botao de adicionar no carrinho */}
         <TouchableOpacity style={styles.btn}
-        onPress={() => navigation.navigate('Cart', {data})}
+        onPress={() => navigation.navigate('Cart', {products})}
         >
           <Image
             source={cart}

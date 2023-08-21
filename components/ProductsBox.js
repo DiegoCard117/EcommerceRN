@@ -16,10 +16,24 @@ import Contacts from './Contacts';
 import Footer from './Footer';
 
 import PageProduct from '../components/PageProducts/PageProduct'
+import fetchProducts from '../assets/services/Api/fetchProducts';
+import formatCurrency from '../assets/utils/formatCurrency';
 
 export default function ProductsBox({navigation}) {
 
+  const [ products, setProducts] = useState([])
+
   const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetchProducts('a54').then((response) => {
+      setProducts(response)
+    })
+  }, [])
+
+  console.log(products)
+
+/*
 
   useEffect(()=>{
     products()
@@ -38,30 +52,31 @@ export default function ProductsBox({navigation}) {
     return data
   }
 
-
+*/
   return (
     <>
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.containerbig}>
           <ScrollView style={styles.ScrollView}>
-            {data.map((data) => (
+            {products.slice(0, 10).map((products) => (
               <TouchableOpacity
                 style={styles.container}
-                key={data.id}
-                onPress={() => navigation.navigate('PageProduct', {data})}
+                key={products.id}
+                onPress={() => navigation.navigate('PageProduct', {products})}
                 >
                 <View style={styles.imgProduct}>
                   <Image
                     style={{width:190, height:167}}
-                    source={{uri : data.img}}
+                    source={{uri : products.thumbnail.replace(/\w\.jpg/gi, 'W.jpg')}}
                     alt=''
+                    resizeMode='contain'
                   />
                 </View>
-                <Text style={styles.titleProduct}>{data.name}</Text>
-                <Text style={styles.spanPriceOlder}>de {(data.price) * 2} por:</Text>
+                <Text style={styles.titleProduct}>{products.title}</Text>
+                <Text style={styles.spanPriceOlder}>de {formatCurrency(products.price * 2)} por:</Text>
                 <Text style={styles.spanVista}>à vista</Text>
-                <Text style={styles.price}>R$ {data.price}</Text>
-                <Text style={styles.divisor}>em até 12x de {((data.price / 12) * 1.2).toFixed(2)} sem juros no cartão</Text>
+                <Text style={styles.price}>{formatCurrency(products.price)}</Text>
+                <Text style={styles.divisor}>em até 12x de {((products.price / 12) * 1.2).toFixed(2)} sem juros no cartão</Text>
             </TouchableOpacity>
             ))}
             <Contacts/>

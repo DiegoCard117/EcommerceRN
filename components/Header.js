@@ -12,6 +12,7 @@ import logout from '../assets/img/logout.png'
 import search from '../assets/img/search.png'
 
 import AuthContext from '../assets/contexts/auth';
+import fetchProducts from '../assets/services/Api/fetchProducts';
 
 
 export default function Header({navigation}) {
@@ -29,6 +30,11 @@ export default function Header({navigation}) {
 
   function handleSignOut() {
     signOut()
+  }
+
+  const handleSearch = async () => {
+    const products = await fetchProducts(text)
+    onChangeText('')
   }
 
   return (
@@ -85,12 +91,16 @@ export default function Header({navigation}) {
               <TextInput
                 style={styles.searchInput}
                 onChangeText={onChangeText}
+                //={() => handleSearch()}
                 value={text}
               />
-              <Image
-                style={styles.imgsearch}
-                source={search}
-              />
+              <TouchableOpacity>
+                <Image
+                  style={styles.imgsearch}
+                  source={search}
+                  onPress={() => handleSearch}
+                />
+              </TouchableOpacity>
             </SafeAreaView>
           </View>
         </View>
