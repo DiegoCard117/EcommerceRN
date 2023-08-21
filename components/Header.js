@@ -5,7 +5,7 @@ import { Text, View, Image, TextInput, SafeAreaView, Dimensions, StyleSheet, Tou
 
 import profile from '../assets/img/profile.png'
 import heart from '../assets/img/heart.png'
-import contact from '../assets/img/contato.png'
+import menu from '../assets/img/menu.png'
 import cart from '../assets/img/cart.png'
 import logout from '../assets/img/logout.png'
 
@@ -13,6 +13,28 @@ import search from '../assets/img/search.png'
 
 import AuthContext from '../assets/contexts/auth';
 import fetchProducts from '../assets/services/Api/fetchProducts';
+
+import gpu from '../assets/img/gpu.png'
+import mouse from '../assets/img/mouse.png'
+import pc from '../assets/img/pc.png'
+import upgrade from '../assets/img/upgrade.png'
+import monitor from '../assets/img/monitor.png'
+import cadeira from '../assets/img/cadeira.png'
+import notebook from '../assets/img/notebook.png'
+import console from '../assets/img/console.png'
+import roteador from '../assets/img/roteador.png'
+
+const imagens = [
+  {id:'1', img: gpu, name: 'Hardware'},
+  {id:'2', img: mouse, name: 'Perifericos'},
+  {id:'3', img: pc, name: 'Computadores'},
+  {id:'4', img: upgrade, name: 'Kit Upgrade'},
+  {id:'5', img: monitor, name: 'Monitores'},
+  {id:'6', img: cadeira, name: 'Cadeiras e Mesas Gamer'},
+  {id:'7', img: notebook, name: 'Notebooks'},
+  {id:'8', img: console, name: 'Consoles'},
+  {id:'9', img: roteador, name: 'Redes e Wireless'}
+]
 
 import searchContext from '../assets/contexts/search';
 
@@ -29,6 +51,13 @@ export default function Header({navigation}) {
   })
 
   const { setProducts } = useContext(searchContext)
+  const [menuStyle, setMenuStyle] = useState(styles.aside);
+  const [listStyle, setListStyle] = useState(styles.namelistClose)
+  
+  const updateMenu = () => {
+    setMenuStyle(menuStyle === styles.aside ? styles.asideOpen : styles.aside);
+    setListStyle(listStyle === styles.namelistClose ? styles.namelist : styles.namelistClose)
+  }
 
   if(!loaded) {
     return null
@@ -95,6 +124,14 @@ export default function Header({navigation}) {
           </View>
           {/*fim do topHeader*/}
           <View style={styles.headerBottom}>
+          <TouchableOpacity
+            onPress={updateMenu}
+          >
+            <Image
+              source={menu}
+              alt=''
+            />
+          </TouchableOpacity>
           <SafeAreaView style={styles.SearchAll}>
               <TextInput
                 style={styles.searchInput}
@@ -113,11 +150,19 @@ export default function Header({navigation}) {
           </View>
         </View>
       </View>
+      <View style={menuStyle} >
+          {imagens.map( (iten)=> (
+            <TouchableOpacity key={iten.id} style={styles.menulist} >
+              <Image source={iten.img} style={styles.img}/>
+              <Text style={listStyle}>{iten.name}</Text>
+            </TouchableOpacity>
+          ))}
+      </View>
     </>
   );
 }
 
-//let screenheight = Dimensions.get("window").height
+let screenheight = Dimensions.get("window").height
 let screewidth = Dimensions.get('window').width
 
 const styles = StyleSheet.create({
@@ -137,7 +182,8 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily:'Poppins',
-     fontSize: 24,
+    fontSize: 24,
+    color: '#0c0c0c',
   },
   headerTopImg: {
     display: 'flex',
@@ -151,9 +197,9 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     padding: 10,
-    width: screewidth - 110,
-    marginLeft: 30,
+    width: '65%',
     color: '#F1F2F5',
+    marginHorizontal: 10,
   },
   SearchAll: {
     borderRadius : 5,
@@ -161,11 +207,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#0c0c0c',
     alignItems: 'center',
+    justifyContent : 'space-around'
   },
   imgsearch: {
     height: 30,
     width: 30,
-    marginRight: 10,
     paddingBottom: 1,
   },
   spanCartTotal : {
@@ -180,6 +226,37 @@ const styles = StyleSheet.create({
     height : 18,
     textAlign: 'center',
     fontWeight: 'bold'
+  },
+  aside: {
+    display:'none',
+    position : 'absolute'
+  },
+  asideOpen: {
+    position : 'absolute',
+    top : 140,
+    backgroundColor: '#0c0c0c',
+    width: '100%',
+    height: screenheight - 140,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingTop: '5%',
+    paddingBottom: '10%',
+  },
+  img: {
+    width: 40,
+    height: 40,
+  },
+  namelistClose: {
+    display: 'none',
+  },
+  namelist: {
+    color: '#F1F2F5',
+  },
+  menulist: {
+    width: '50%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-bettween'
   }
 })
 

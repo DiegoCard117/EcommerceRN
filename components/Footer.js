@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     backgroundColor : '#384359',
     justifyContent: 'space-around',
     padding: 14,
-    width : screewidth - 100,
+    width : '100%',
   },
   title: {
     fontSize: 24,
