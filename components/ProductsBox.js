@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState, useEffect } from 'react';
 import {
     ScrollView,
@@ -18,15 +18,14 @@ import Footer from './Footer';
 import PageProduct from '../components/PageProducts/PageProduct'
 import fetchProducts from '../assets/services/Api/fetchProducts';
 import formatCurrency from '../assets/utils/formatCurrency';
+import searchContext from '../assets/contexts/search';
 
 export default function ProductsBox({navigation}) {
 
-  const [ products, setProducts] = useState([])
-
-  const [data, setData] = useState([]);
+  const {products, setProducts} = useContext(searchContext)
 
   useEffect(() => {
-    fetchProducts('a54').then((response) => {
+    fetchProducts('iphone').then((response) => {
       setProducts(response)
     })
   }, [])

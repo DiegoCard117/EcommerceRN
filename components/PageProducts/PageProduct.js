@@ -40,7 +40,6 @@ export default function PageProducts({route, navigation}) {
         </View>
         {/* botao de adicionar no carrinho */}
         <TouchableOpacity style={styles.btn}
-        onPress={() => navigation.navigate('Cart', {products})}
         >
           <Image
             source={cart}

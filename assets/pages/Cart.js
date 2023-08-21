@@ -7,8 +7,8 @@ import cart from '../img/cart.png'
 import trash from '../img/trash.png'
 import truck from '../img/truck.png'
 
-const Cart = ({route}) => {
-  const { data } = route.params
+const Cart = ({navigation, route}) => {
+  //const { data } = route.params
   const [cep, setCep] = useState('')
 
   return (
@@ -36,7 +36,7 @@ const Cart = ({route}) => {
         </View>
         <View style={styles.boxResume}>
           <Text style={{color: 'green', fontSize : 12}}>à vista</Text>
-          <Text style={{color: 'green', fontSize : 20}}>R$ {data.price}</Text>
+          <Text style={{color: 'green', fontSize : 20}}>R$ XXXXX</Text>
           <Text style={{fontSize : 12}}>ou</Text>
           <Text style={{fontSize : 18 , color : 'red'}}>R$ 1.919,99</Text>
           <Text style={styles.spanParc}>em até 12x de <Text style={{color: 'red'}}>159,99</Text> sem juros no cartão</Text>
@@ -46,7 +46,7 @@ const Cart = ({route}) => {
           <View style={styles.boxImg}>
             <Image
               style={styles.imgProduct}
-              source={{uri: data.img}}
+              //source={{uri: data.img}}
               alt=''
               width={90}
               height={100}
@@ -56,7 +56,7 @@ const Cart = ({route}) => {
             <View style={styles.nameBox}>
               <Text
                 numberOfLines={3}
-                style={styles.nameProduct}>{data.name}</Text>
+                style={styles.nameProduct}>nome</Text>
             </View>
             {/* botao de add */}
             <View style={styles.add}>

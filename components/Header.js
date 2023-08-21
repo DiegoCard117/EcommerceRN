@@ -14,6 +14,8 @@ import search from '../assets/img/search.png'
 import AuthContext from '../assets/contexts/auth';
 import fetchProducts from '../assets/services/Api/fetchProducts';
 
+import searchContext from '../assets/contexts/search';
+
 
 export default function Header({navigation}) {
   const [ text, onChangeText ] = useState('') 
@@ -23,6 +25,8 @@ export default function Header({navigation}) {
   const [loaded] = useFonts({
     Poppins: require('../assets/fonts/Poppins-Light.ttf')
   })
+
+  const { setProducts } = useContext(searchContext)
 
   if(!loaded) {
     return null
@@ -34,7 +38,7 @@ export default function Header({navigation}) {
 
   const handleSearch = async () => {
     const products = await fetchProducts(text)
-    onChangeText('')
+    setProducts(products)
   }
 
   return (
@@ -87,18 +91,18 @@ export default function Header({navigation}) {
           </View>
           {/*fim do topHeader*/}
           <View style={styles.headerBottom}>
-            <SafeAreaView style={styles.SearchAll}>
+          <SafeAreaView style={styles.SearchAll}>
               <TextInput
                 style={styles.searchInput}
                 onChangeText={onChangeText}
-                //={() => handleSearch()}
                 value={text}
               />
-              <TouchableOpacity>
+              <TouchableOpacity
+                onPress={handleSearch}
+              >
                 <Image
                   style={styles.imgsearch}
                   source={search}
-                  onPress={() => handleSearch}
                 />
               </TouchableOpacity>
             </SafeAreaView>

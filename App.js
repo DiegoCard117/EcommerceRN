@@ -11,6 +11,7 @@ import Routes from "./assets/routes";
 
 import ProductsBox from "./components/ProductsBox";
 import PageProducts from "./components/PageProducts/PageProduct";
+import SearchProvider from "./assets/contexts/SearchProvider";
 
 
 export default function App() {
@@ -18,7 +19,9 @@ export default function App() {
   return (
     <NavigationContainer>
       <AuthProvider>
-        <Routes />
+        <SearchProvider>
+          <Routes/>
+        </SearchProvider>
       </AuthProvider>
     </NavigationContainer>
   );
