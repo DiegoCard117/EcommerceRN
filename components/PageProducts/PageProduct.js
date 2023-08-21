@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { View, ScrollView, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 
 import Footer from '../Footer';
@@ -7,13 +7,23 @@ import Contacts from '../Contacts';
 
 import cart from '../../assets/img/cartAdd.png'
 import formatCurrency from '../../assets/utils/formatCurrency';
+import searchContext from '../../assets/contexts/search';
 
-export default function PageProducts({route, navigation}) {
+export default function PageProducts({route}) {
   const { products } = route.params
+
+  const {title, thumbnail, price} = products
+
+  const {cartItems, setCartItems} = useContext(searchContext)
+
+  const handleAddCart = () => {
+    setCartItems([...cartItems, products])
+    
+  }
 
   const parcelas = Array.from({ length: 12 }, (_, index) => ({
     numero: index + 1,
-    valor: index === 0 ? products.price.toFixed(2) : ((products.price * 1.2) / (index + 1)).toFixed(2),
+    valor: index === 0 ? price.toFixed(2) : ((price * 1.2) / (index + 1)).toFixed(2),
   }));
 
   return (
@@ -22,7 +32,7 @@ export default function PageProducts({route, navigation}) {
         <View style={styles.containerImg}>
           <Image
             style={styles.imgProduct}
-            source={{uri: products.thumbnail.replace(/\w\.jpg/gi, 'W.jpg')}}
+            source={{uri: thumbnail.replace(/\w\.jpg/gi, 'W.jpg')}}
             alt=''
             width={245}
             height={203}
@@ -30,16 +40,17 @@ export default function PageProducts({route, navigation}) {
           />
         </View>
         <View style={styles.Titleprices}>
-          <Text style={styles.nameProduct}>{products.title}</Text>
-          <Text style={styles.priceOlder}>de {formatCurrency(products.price * 2)} por:</Text>
+          <Text style={styles.nameProduct}>{title}</Text>
+          <Text style={styles.priceOlder}>de {formatCurrency(price * 2)} por:</Text>
           <Text style={styles.spanVista}>à vista</Text>
-          <Text style={styles.price}>{formatCurrency(products.price)}</Text>
+          <Text style={styles.price}>{formatCurrency(price)}</Text>
           <Text>ou</Text>
-          <Text style={styles.priceCart}>{formatCurrency((products.price * 1.2).toFixed(2))}</Text>
-          <Text style={styles.divisor}>em até 12x de <Text style={styles.diviPrice}>{((products.price / 12) * 1.2).toFixed(2)}</Text> sem juros no cartão</Text>
+          <Text style={styles.priceCart}>{formatCurrency((price * 1.2).toFixed(2))}</Text>
+          <Text style={styles.divisor}>em até 12x de <Text style={styles.diviPrice}>{((price / 12) * 1.2).toFixed(2)}</Text> sem juros no cartão</Text>
         </View>
         {/* botao de adicionar no carrinho */}
         <TouchableOpacity style={styles.btn}
+          onPress={handleAddCart}
         >
           <Image
             source={cart}

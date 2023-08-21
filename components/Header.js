@@ -22,6 +22,8 @@ export default function Header({navigation}) {
 
   const { signOut } = useContext(AuthContext)
 
+  const { cartItems } = useContext(searchContext)
+
   const [loaded] = useFonts({
     Poppins: require('../assets/fonts/Poppins-Light.ttf')
   })
@@ -78,6 +80,8 @@ export default function Header({navigation}) {
                   style={styles.imgHeader}
                   source={cart}
                 />
+                {cartItems.length > 0 && <Text style={styles.spanCartTotal}>{cartItems.length}</Text>}
+                
               </TouchableOpacity>
               <TouchableOpacity 
                 onPress={handleSignOut}
@@ -163,6 +167,19 @@ const styles = StyleSheet.create({
     width: 30,
     marginRight: 10,
     paddingBottom: 1,
+  },
+  spanCartTotal : {
+    position: 'absolute',
+    top: -3,
+    left: -2,
+    backgroundColor : '#FFF',
+    borderColor : '#0c0c0c',
+    borderWidth : 1,
+    borderRadius : 50,
+    width: 18,
+    height : 18,
+    textAlign: 'center',
+    fontWeight: 'bold'
   }
 })
 

@@ -30,28 +30,6 @@ export default function ProductsBox({navigation}) {
     })
   }, [])
 
-  console.log(products)
-
-/*
-
-  useEffect(()=>{
-    products()
-  }, [])
-
-  const products = async () => {
-    const url = 'https://diegocard117.github.io/JsonTest/ecommerce.json'
-    try {
-      const response = await fetch(url)
-      const data = await response.json()
-      setData(data)
-      console.log(data)
-    } catch(error) {
-      console.error('Erro encontrado', error)
-    }
-    return data
-  }
-
-*/
   return (
     <>
       <SafeAreaView style={styles.safeArea}>
