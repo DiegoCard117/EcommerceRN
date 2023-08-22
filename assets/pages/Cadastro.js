@@ -3,13 +3,14 @@ import { Text, ScrollView, StyleSheet, View, TextInput, Image, TouchableOpacity,
 
 import SelectDropdown from 'react-native-select-dropdown'
 
-import Header from "../../components/Header"
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useState } from "react";
 
 import { Ionicons } from '@expo/vector-icons'
 
 import arrow from '../img/arrow.png'
+
+import { useForm, Controller } from 'react-hook-form'
 
 export default function Cadastro({navigation}) {
   const [name, setName] = useState('')

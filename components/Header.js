@@ -147,7 +147,10 @@ export default function Header({navigation}) {
                 value={text}
               />
               <TouchableOpacity
-                onPress={handleSearch}
+                onPress={() => {
+                  handleSearch();
+                  navigation.navigate('Home')
+                }}
               >
                 <Image
                   style={styles.imgsearch}

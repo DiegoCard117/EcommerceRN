@@ -10,24 +10,35 @@ from "react-native"
 
 import { Ionicons } from '@expo/vector-icons'
 import locker from '../img/locker.png'
-import Header from "../../components/Header";
 
 import React, { useState, useContext } from "react";
 
-import authService from '../services/auth'
 import AuthContext from "../contexts/auth";
 
+import { useForm, Controller } from 'react-hook-form'
+import * as yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
+
+const schema = yup.object({
+  email: yup.string().email("email Invalido").required("Informe seu email"),
+  password: yup.string().min(6, "A senha deve conter no minimo 6 digitos").required("Digite sua senha")
+})
+
 export default function Login({navigation}) {
-  const [ email, onChangeEmail ] = useState('') 
-  const [ senha, onChangeSenha ] = useState('')
+  const { control, handleSubmit, formState: {errors} } = useForm({
+    resolver: yupResolver(schema)
+  })
   const [ hidePass, setHidePass] = useState(true)
 
-  const {signed,user, signIn} = useContext(AuthContext)
+  const {signed, user, signIn} = useContext(AuthContext)
   
-  console.log(signed)
-  console.log(user)
-  function handleLogin() {
-    signIn()
+  //console.log(signed)
+  //console.log(user)
+  function handleLogin(data) {
+    console.log(data)
+    if (data.email != '' && data.password != '') {
+      signIn()
+    }
   }
 
   return (
@@ -46,22 +57,35 @@ export default function Login({navigation}) {
         </View>
         <View style={styles.loginMiddle}>
           <SafeAreaView style={styles.formLogin}>
-              <TextInput
-                style={styles.TextInput}
-                onChangeText={onChangeEmail}
-                value={email}
-                placeholder="Email"
-                placeholderTextColor={'#F1F2F5'}
-              />
+            <Controller
+              control={control}
+              name="email"
+              render={({field:{onChange, value}}) => (
+                <TextInput
+                  style={styles.TextInput}
+                  onChangeText={onChange}
+                  value={value}
+                  placeholder="Email"
+                  placeholderTextColor={'#F1F2F5'}
+                />
+              )}
+            />
+            {errors.email && <Text style={styles.errorMessage}>{errors.email.message}</Text>}
             <View style={styles.inputArea}>
-              <TextInput
-                style={styles.TextPassword}
-                onChangeText={onChangeSenha}
-                value={senha}
-                placeholder="Senha"
-                placeholderTextColor={'#F1F2F5'}
-                secureTextEntry={hidePass}
-              />
+            <Controller
+              control={control}
+              name="password"
+              render={({field:{onChange, value}}) => (
+                <TextInput
+                  style={styles.TextPassword}
+                  onChangeText={onChange}
+                  value={value}
+                  placeholder="Senha"
+                  placeholderTextColor={'#F1F2F5'}
+                />
+              )}
+            />
+            {errors.password && <Text style={styles.errorMessagePass}>{errors.password.message}</Text>}
               {/* botao de ocultar senha */}
               <TouchableOpacity style={styles.iconPassword} onPress={() => setHidePass(!hidePass)}>
                 { hidePass ?
@@ -73,7 +97,7 @@ export default function Login({navigation}) {
             {/* login */}
             <TouchableOpacity
               style={styles.btnSubmit}
-              onPress={handleLogin}
+              onPress={handleSubmit(handleLogin)}
             >
               <Text style={styles.btnText}>Acessar Conta</Text>
             </TouchableOpacity>
@@ -190,5 +214,18 @@ const styles = StyleSheet.create({
   },
   forgot : {
     paddingBottom : 20
+  },
+  errorMessage : {
+    position : 'absolute',
+    top : 25,
+    color: '#FFF',
+    fontSize: 10
+  },
+  errorMessagePass : {
+    position : 'absolute',
+    top : 15,
+    color: '#FFF',
+    fontSize: 10
+
   }
 })
