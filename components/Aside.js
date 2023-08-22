@@ -38,12 +38,12 @@ export default function Aside() {
   return (
     <>
       <View style={menuStyle} >
-          {imagens.map( (iten)=> (
-            <TouchableOpacity key={iten.id} style={styles.menulist} onPress={updateMenu}>
-              <Image source={iten.img} style={styles.img}/>
-              <Text style={listStyle}>{iten.name}</Text>
-            </TouchableOpacity>
-          ))}
+        {imagens.map( (iten)=> (
+          <TouchableOpacity key={iten.id} style={styles.menulist} onPress={updateMenu}>
+            <Image source={iten.img} style={styles.img}/>
+            <Text style={listStyle}>{iten.name}</Text>
+          </TouchableOpacity>
+        ))}
       </View>
     </>
   )

@@ -15,7 +15,7 @@ const Cart = () => {
   const [cep, setCep] = useState('')
 
   const {cartItems , setCartItems} = useContext(searchContext)
-
+  {/* somar o valor dos produtos no carrinho */}
   const totalPrice = cartItems.reduce((acc, item) => item.price + acc, 0)
 
   const eraseCart = () => {
@@ -52,7 +52,7 @@ const Cart = () => {
           <Text style={{fontSize : 18 , color : 'red'}}>{formatCurrency(totalPrice * 1.2)}</Text>
           <Text style={styles.spanParc}>em até 12x de <Text style={{color: 'red'}}>{formatCurrency((totalPrice / 12) * 1.2) }</Text> sem juros no cartão</Text>
         </View>
-
+        {/* componente que gera os cards no carrinho */}
         { cartItems.map((cartItems) => <CartItem
           key={cartItems.id}
           products={cartItems}/>

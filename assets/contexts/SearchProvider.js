@@ -1,3 +1,5 @@
+//Provider do contexto 
+
 import React, { useState } from "react";
 import searchContext from "./search";
 
