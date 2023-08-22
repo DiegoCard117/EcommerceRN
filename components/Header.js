@@ -25,7 +25,7 @@ import console from '../assets/img/console.png'
 import roteador from '../assets/img/roteador.png'
 
 const imagens = [
-  {id:'1', img: gpu, name: 'Hardware'},
+  {id:'1', img: gpu, name: 'Placa de Video'},
   {id:'2', img: mouse, name: 'Perifericos'},
   {id:'3', img: pc, name: 'Computadores'},
   {id:'4', img: upgrade, name: 'Kit Upgrade'},
@@ -33,7 +33,7 @@ const imagens = [
   {id:'6', img: cadeira, name: 'Cadeiras e Mesas Gamer'},
   {id:'7', img: notebook, name: 'Notebooks'},
   {id:'8', img: console, name: 'Consoles'},
-  {id:'9', img: roteador, name: 'Redes e Wireless'}
+  {id:'9', img: roteador, name: 'Roteador'}
 ]
 
 import searchContext from '../assets/contexts/search';
@@ -70,6 +70,13 @@ export default function Header({navigation}) {
   const handleSearch = async () => {
     const products = await fetchProducts(text)
     setProducts(products)
+  }
+
+  const handleSearchMenu = async (category) => {
+    const products = await fetchProducts(category)
+    setProducts(products)
+    setMenuStyle(menuStyle === styles.aside ? styles.asideOpen : styles.aside);
+    setListStyle(listStyle === styles.namelistClose ? styles.namelist : styles.namelistClose)
   }
 
   return (
@@ -125,6 +132,7 @@ export default function Header({navigation}) {
           {/*fim do topHeader*/}
           <View style={styles.headerBottom}>
           <TouchableOpacity
+            style={styles.menuIcon}
             onPress={updateMenu}
           >
             <Image
@@ -152,7 +160,14 @@ export default function Header({navigation}) {
       </View>
       <View style={menuStyle} >
           {imagens.map( (iten)=> (
-            <TouchableOpacity key={iten.id} style={styles.menulist} >
+            <TouchableOpacity
+              key={iten.id}
+              style={styles.menulist}
+              onPress={() => {
+                  handleSearchMenu(iten.name);
+                  navigation.navigate('Home')
+              }}
+            >
               <Image source={iten.img} style={styles.img}/>
               <Text style={listStyle}>{iten.name}</Text>
             </TouchableOpacity>
@@ -169,7 +184,7 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 10,
     backgroundColor: '#F1F2F5',
-    height : 140
+    height : 140,
   },
   header: {
     display: 'flex',
@@ -197,7 +212,7 @@ const styles = StyleSheet.create({
   },
   searchInput: {
     padding: 10,
-    width: '65%',
+    width: '60%',
     color: '#F1F2F5',
     marginHorizontal: 10,
   },
@@ -213,6 +228,9 @@ const styles = StyleSheet.create({
     height: 30,
     width: 30,
     paddingBottom: 1,
+  },
+  menuIcon : {
+    marginRight : 10
   },
   spanCartTotal : {
     position: 'absolute',
@@ -245,6 +263,7 @@ const styles = StyleSheet.create({
   img: {
     width: 40,
     height: 40,
+    marginRight : 40
   },
   namelistClose: {
     display: 'none',
@@ -253,7 +272,7 @@ const styles = StyleSheet.create({
     color: '#F1F2F5',
   },
   menulist: {
-    width: '50%',
+    width: '80%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-bettween'

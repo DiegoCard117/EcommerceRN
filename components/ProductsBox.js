@@ -35,7 +35,7 @@ export default function ProductsBox({navigation}) {
       <SafeAreaView style={styles.safeArea}>
         <View style={styles.containerbig}>
           <ScrollView style={styles.ScrollView}>
-            {products.slice(0, 10).map((products) => (
+            {products.slice(0, 20).map((products) => (
               <TouchableOpacity
                 style={styles.container}
                 key={products.id}
@@ -75,14 +75,14 @@ const styles = StyleSheet.create({
   },
   containerbig : {
     flexDirection: 'collum',
-    height: screenheight - 140
+    height: '100%'
   },
   ScrollView: {
   },
   container: {
     backgroundColor: '#FFF',
     height: 470,
-    width: '90%',
+    width: '75%',
     margin: '5%',
     padding: 10,
 
@@ -91,7 +91,8 @@ const styles = StyleSheet.create({
     shadowRadius: 3,
 
     elevation: 5,
-    borderRadius : 5
+    borderRadius : 5,
+    alignSelf : 'center'
   },
   imgProduct: {
     alignItems: 'center',
