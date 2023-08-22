@@ -22,13 +22,13 @@ Este é um aplicativo de e-commerce desenvolvido em React Native usando o Expo. 
    ```bash
    git clone https://github.com/seu-usuario/nome-do-repositorio.git
 
-2 - Acesse o diretório do projeto:
+2 - Acesse o diretório do projeto: <br>
   cd ReactNative
 
-3 - Instale as dependências:
+3 - Instale as dependências: <br>
   npm install
 
-4 - Inicie o servidor Expo:
+4 - Inicie o servidor Expo: <br>
   npx expo start
 
 5 - Abra o aplicativo Expo Go em seu dispositivo móvel ou emulador e escaneie o código QR exibido no terminal.
