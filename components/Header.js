@@ -265,10 +265,10 @@ const styles = StyleSheet.create({
   },
   asideOpen: {
     position : 'absolute',
-    top : 140,
+    top : 120,
     backgroundColor: '#0c0c0c',
     width: '100%',
-    height: screenheight - 140,
+    height: screenheight - 120,
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingTop: '5%',
