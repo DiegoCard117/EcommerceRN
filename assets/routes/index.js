@@ -9,6 +9,6 @@ import searchContext from "../contexts/search";
 
 export default function Routes() {
   const {signed} = useContext(AuthContext)
-  //return signed ? <AppRoutes/>  : <AuthRoutes/>
-  return <AppRoutes/>
+  return signed ? <AppRoutes/>  : <AuthRoutes/>
+  //return <AppRoutes/>
 }
