@@ -8,6 +8,7 @@ import Contacts from '../Contacts';
 import cart from '../../assets/img/cartAdd.png'
 import formatCurrency from '../../assets/utils/formatCurrency';
 import searchContext from '../../assets/contexts/search';
+import heart from '../../assets/img/heart.png'
 
 export default function PageProducts({route}) {
   const { products } = route.params
@@ -15,10 +16,14 @@ export default function PageProducts({route}) {
   const {title, thumbnail, price} = products
 
   const {cartItems, setCartItems} = useContext(searchContext)
+  const { favorites, setFavorites } = useContext(searchContext)
 
   const handleAddCart = () => {
     setCartItems([...cartItems, products])
-    
+  }
+
+  const handleFavorites = () => {
+    setFavorites([...favorites, products])
   }
 
   const parcelas = Array.from({ length: 12 }, (_, index) => ({
@@ -39,6 +44,17 @@ export default function PageProducts({route}) {
             resizeMode='contain'
           />
         </View>
+        {/* botao de favoritos */}
+        <TouchableOpacity
+          onPress={handleFavorites}
+          style={styles.favoritebtn}
+        >
+          <Image
+            source={heart}
+            width={25}
+            height={25}
+          />
+        </TouchableOpacity>
         <View style={styles.Titleprices}>
           <Text style={styles.nameProduct}>{title}</Text>
           <Text style={styles.priceOlder}>de {formatCurrency(price * 2)} por:</Text>
@@ -168,5 +184,10 @@ const styles = StyleSheet.create({
   textPriceParc : {
     fontSize : 14,
     margin : 2
+  },
+  favoritebtn : {
+    position : 'absolute',
+    left : '80%',
+    top : 10
   }
 })

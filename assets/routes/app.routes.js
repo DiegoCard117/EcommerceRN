@@ -4,6 +4,7 @@ import React, {useContext} from "react";
 import Home from "../pages/Home";
 import PageProduct from "../../components/PageProducts/PageProduct";
 import Cart from "../pages/Cart";
+import Favorites from '../pages/Favorites';
 
 import Header from "../../components/Header";
 
@@ -33,6 +34,10 @@ function AppRoutes() {
       <AppStack.Screen
         name="Cart"
         component={Cart}
+      />
+      <AppStack.Screen
+        name="Favorites"
+        component={Favorites}
       />
     </AppStack.Navigator>
   )

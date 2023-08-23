@@ -8,7 +8,6 @@ import searchContext from "../assets/contexts/search";
 
 export default function CartItem({products}) {
 
-
   const { cartItems, setCartItems } = useContext(searchContext)
   const {id, title, thumbnail, price} = products
 

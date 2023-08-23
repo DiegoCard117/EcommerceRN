@@ -45,6 +45,7 @@ export default function Header({navigation}) {
   const { signOut } = useContext(AuthContext)
 
   const { cartItems } = useContext(searchContext)
+  const { favorites } = useContext(searchContext)
 
   const [loaded] = useFonts({
     Poppins: require('../assets/fonts/Poppins-Light.ttf')
@@ -70,6 +71,7 @@ export default function Header({navigation}) {
   const handleSearch = async () => {
     const products = await fetchProducts(text)
     setProducts(products)
+    onChangeText('')
   }
 
   const handleSearchMenu = async (category) => {
@@ -102,11 +104,15 @@ export default function Header({navigation}) {
                   source={profile}
                 />
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity
+              onPress={() => {
+                navigation.navigate('Favorites')
+              }}>
                 <Image
                   style={styles.imgHeader}
                   source={heart}
                 />
+                {favorites.length > 0 && <Text style={styles.spanCartTotal}>{favorites.length}</Text>}
               </TouchableOpacity>
               <TouchableOpacity
                 onPress={() => {
@@ -138,6 +144,9 @@ export default function Header({navigation}) {
             <Image
               source={menu}
               alt=''
+              width={20}
+              height={20}
+              resizeMode='contain'
             />
           </TouchableOpacity>
           <SafeAreaView style={styles.SearchAll}>
@@ -187,11 +196,11 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 10,
     backgroundColor: '#F1F2F5',
-    height : 140,
+    height : 120,
   },
   header: {
     display: 'flex',
-    padding:20 ,
+    padding: 20 ,
   },
   headerTop: {
     display: 'flex',
@@ -214,7 +223,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   searchInput: {
-    padding: 10,
+    padding: 5,
     width: '60%',
     color: '#F1F2F5',
     marginHorizontal: 10,
@@ -225,7 +234,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: '#0c0c0c',
     alignItems: 'center',
-    justifyContent : 'space-around'
+    justifyContent : 'space-around',
+    height: 40
   },
   imgsearch: {
     height: 30,
@@ -233,7 +243,8 @@ const styles = StyleSheet.create({
     paddingBottom: 1,
   },
   menuIcon : {
-    marginRight : 10
+    marginRight : 10,
+    marginTop: -5
   },
   spanCartTotal : {
     position: 'absolute',

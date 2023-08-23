@@ -20,48 +20,56 @@ import fetchProducts from '../assets/services/Api/fetchProducts';
 import formatCurrency from '../assets/utils/formatCurrency';
 import searchContext from '../assets/contexts/search';
 
+import Loading from './Loading';
+
+
 export default function ProductsBox({navigation}) {
 
   const {products, setProducts} = useContext(searchContext)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     fetchProducts('iphone').then((response) => {
       setProducts(response)
+      setLoading(false)
     })
   }, [])
 
   return (
     <>
-      <SafeAreaView style={styles.safeArea}>
-        <View style={styles.containerbig}>
-          <ScrollView style={styles.ScrollView}>
-            {products.slice(0, 20).map((products) => (
-              <TouchableOpacity
-                style={styles.container}
-                key={products.id}
-                onPress={() => navigation.navigate('PageProduct', {products})}
-                >
-                <View style={styles.imgProduct}>
-                  <Image
-                    style={{width:190, height:167}}
-                    source={{uri : products.thumbnail.replace(/\w\.jpg/gi, 'W.jpg')}}
-                    alt=''
-                    resizeMode='contain'
-                  />
-                </View>
-                <Text style={styles.titleProduct}>{products.title}</Text>
-                <Text style={styles.spanPriceOlder}>de {formatCurrency(products.price * 2)} por:</Text>
-                <Text style={styles.spanVista}>à vista</Text>
-                <Text style={styles.price}>{formatCurrency(products.price)}</Text>
-                <Text style={styles.divisor}>em até 12x de {((products.price / 12) * 1.2).toFixed(2)} sem juros no cartão</Text>
-            </TouchableOpacity>
-            ))}
-            <Contacts/>
-            <Footer/>
-          </ScrollView>
-        </View>
-      </SafeAreaView>
+      {(loading && <Loading/>) || (
+        <SafeAreaView style={styles.safeArea}>
+          <View style={styles.containerbig}>
+            <ScrollView style={styles.ScrollView}>
+              {products.slice(0, 20).map((products) => (
+                <TouchableOpacity
+                  style={styles.container}
+                  key={products.id}
+                  onPress={() => navigation.navigate('PageProduct', {products})}
+                  >
+                  <View style={styles.imgProduct}>
+                    <Image
+                      style={{width:190, height:167}}
+                      source={{uri : products.thumbnail.replace(/\w\.jpg/gi, 'W.jpg')}}
+                      alt=''
+                      resizeMode='contain'
+                    />
+                    
 
+                  </View>
+                  <Text style={styles.titleProduct}>{products.title}</Text>
+                  <Text style={styles.spanPriceOlder}>de {formatCurrency(products.price * 2)} por:</Text>
+                  <Text style={styles.spanVista}>à vista</Text>
+                  <Text style={styles.price}>{formatCurrency(products.price)}</Text>
+                  <Text style={styles.divisor}>em até 12x de {((products.price / 12) * 1.2).toFixed(2)} sem juros no cartão</Text>
+              </TouchableOpacity>
+              ))}
+              <Contacts/>
+              <Footer/>
+            </ScrollView>
+          </View>
+        </SafeAreaView>
+      )}
     </>
   );
 }
@@ -120,6 +128,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     width: 150,
   },
+
 })
 
 /*

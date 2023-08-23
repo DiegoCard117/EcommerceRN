@@ -7,14 +7,15 @@ const SearchProvider = ({children}) => {
 
   const [ products, setProducts] = useState([])
   const [ cartItems, setCartItems] = useState([])
-
-  
+  const [ favorites, setFavorites] = useState([])
 
   const value = {
     products,
     setProducts,
     cartItems,
     setCartItems,
+    favorites,
+    setFavorites
   }
 
   return (
