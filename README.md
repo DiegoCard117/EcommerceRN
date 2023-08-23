@@ -1,51 +1,51 @@
-# Aplicativo de E-commerce com React Native e Expo
+# E-commerce App with React Native and Expo
 
-Este é um aplicativo de e-commerce desenvolvido em React Native usando o Expo. Ele se conecta à API do Mercado Livre para exibir produtos e permite que os usuários visualizem detalhes do produto, adicionem produtos ao carrinho e façam compras.
+This is an e-commerce app developed in React Native using Expo. It connects to the Mercado Livre API to display products and allows users to view product details, add products to the cart, and make purchases.
 
-## Funcionalidades
 
-- **Pesquisa de Produtos**: Os usuários podem pesquisar produtos por nome ou categoria.
-- **Listagem de Produtos**: Exibe uma lista de produtos com informações detalhadas.
-- **Detalhes do Produto**: Os usuários podem visualizar informações detalhadas sobre um produto específico.
-- **Carrinho de Compras**: Os produtos podem ser adicionados e removidos do carrinho de compras.
-- **Finalização da Compra**: Os usuários podem revisar e finalizar suas compras.(**Em breve**)
+## Features
 
-## Pré-requisitos
+- **Product Search:** Users can search for products by name or category.
+- **Product Listing:** Displays a list of products with detailed information.
+- **Product Details**: Users can view detailed information about a specific product.
+- **Shopping Cart:** Products can be added and removed from the shopping cart.
+- **Checkout:** Users can review and complete their purchases. (Coming Soon)
+
+
+## Pre-requisites
 
 - [Node.js](https://nodejs.org/)
 - [Expo CLI](https://docs.expo.dev/get-started/installation/)
+## Installation
+1- Clone the repository:
+  git clone https://github.com/seu-usuario/nome-do-repositorio.git
+  Navigate to the project directory:
 
-## Instalação
+2- cd ReactNative
+  Install the dependencies:
 
-1. Clone o repositório:
+3- npm install
+  Start the Expo server:
 
-   ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
+4- npx expo start
+  Open the Expo Go app on your mobile device or emulator and scan the QR code displayed in the terminal.
 
-2 - Acesse o diretório do projeto: <br>
-  cd ReactNative
 
-3 - Instale as dependências: <br>
-  npm install
+# Usage
 
-4 - Inicie o servidor Expo: <br>
-  npx expo start
+Use the search bar to find products by name or category.
 
-5 - Abra o aplicativo Expo Go em seu dispositivo móvel ou emulador e escaneie o código QR exibido no terminal.
+Tap on a product to view details.
 
-# Uso
+In the product detail, you can add the product to the cart.
 
-Use a barra de pesquisa para encontrar produtos por nome ou categoria.
+Tap on the cart icon in the header to view the shopping cart.
 
-Toque em um produto para ver detalhes.
+On the cart screen, you can adjust the quantity of products and complete the purchase. (Coming Soon)
 
-No detalhe do produto, você pode adicionar o produto ao carrinho.
 
-Toque no ícone do carrinho no cabeçalho para visualizar o carrinho de compras.
+# Contributions
 
-Na tela do carrinho, você pode ajustar a quantidade de produtos e finalizar a compra.(**Em breve**)
+Contributions are welcome! Feel free to open an issue or submit a pull request.
 
-# Contribuições
-Contribuições são bem-vindas! Sinta-se à vontade para abrir um problema ou enviar uma solicitação pull.
-
-Feito com ❤️ por Diego Cardoso
+Made with ❤️ by Diego Cardoso
