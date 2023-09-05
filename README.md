@@ -18,7 +18,7 @@ This is an e-commerce app developed in React Native using Expo. It connects to t
 - [Expo CLI](https://docs.expo.dev/get-started/installation/)
 ## Installation
 1- Clone the repository:
-  git clone https://github.com/seu-usuario/nome-do-repositorio.git
+  git clone https://github.com/DiegoCard117/EcommerceRN.git
   Navigate to the project directory:
 
 2- cd ReactNative
